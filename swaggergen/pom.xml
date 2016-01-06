@@ -1,0 +1,147 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>swaggergen</groupId>
+	<artifactId>swaggergen</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<dependencies>
+	<!-- Swagger Model Start -->
+		
+		<dependency>
+	<groupId>io.swagger</groupId>
+	<artifactId>swagger-core</artifactId>
+	<version>1.5.3</version>
+</dependency>
+		
+		<dependency>
+	<groupId>io.swagger</groupId>
+	<artifactId>swagger-parser</artifactId>
+	<version>1.0.10</version>
+</dependency>
+		
+    <!-- Swagger Model End -->
+
+     <!-- Apache POI Start -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.10-FINAL</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.10-FINAL</version>
+		</dependency>
+    <!-- Apache POI End -->
+    <dependency>
+    	<groupId>log4j</groupId>
+    	<artifactId>log4j</artifactId>
+    	<version>1.2.17</version>
+    </dependency>
+	</dependencies>
+	<build>
+    <plugins>
+      <!-- any other plugins -->
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+      </plugin>
+      <!-- <plugin>
+            <groupId>com.github.wvengen</groupId>
+            <artifactId>proguard-maven-plugin</artifactId>
+            <version>2.0.6</version>
+            <dependencies>
+                <dependency>
+                    <groupId>net.sf.proguard</groupId>
+                    <artifactId>proguard-base</artifactId>
+                    <version>4.10</version>
+                </dependency>
+            </dependencies>
+            <executions>
+               <execution>
+                   <phase>package</phase>
+                   <goals><goal>proguard</goal></goals>
+               </execution>
+            </executions>
+            <configuration>
+                <obfuscate>true</obfuscate>
+                <proguardVersion>4.10</proguardVersion>
+                <options>
+                    <option>-allowaccessmodification</option>
+                    <option>-keep public class com.main.swagger.GenrateSwaggerJson { public *; public static *; }</option>
+                    <option>-keep public class com.main.swagger.CreateSwagger { public *; public static *; }</option>
+                </options>
+                <injar>${project.build.finalName}.jar</injar>
+               <outjar>${project.build.finalName}-small.jar</outjar>
+               <outputDirectory>${project.build.directory}</outputDirectory>
+                <libs>
+                    <lib>${java.home}/lib/rt.jar</lib>
+                    <lib>${java.home}/lib/jce.jar</lib>
+                </libs>
+            </configuration>
+        </plugin> -->
+        
+       <!--  <plugin>
+                <groupId>com.pyx4me</groupId>
+                <artifactId>proguard-maven-plugin</artifactId>
+                <version>2.0.4</version>
+
+                run proguard at package phase
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>proguard</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <obfuscate>true</obfuscate>
+                    <archive>
+                        <manifest>
+                            <mainClass>${project.build.mainClass}</mainClass>
+                        </manifest>
+                    </archive>
+                    <options>
+                        <option>-allowaccessmodification</option>
+                        <option>-dontshrink</option>
+                        <option>-keepattributes *Annotation*</option>
+                        <option>-keep public class ${project.build.mainClass} { *; }</option>
+                        <option>-keep public class [com.qualified_name]</option>
+
+                        if you want to keep enum classes, this is generally expected
+                        <option>-keep public enum * { *;}</option>
+                    </options>
+                    <outjar>${project.build.finalName}.jar</outjar>
+                    <libs>
+                        <lib>${java.home}/lib/rt.jar</lib>
+                        <lib>${java.home}/lib/jsse.jar</lib>
+                        <lib>${java.home}/lib/jce.jar</lib>
+                    </libs>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.sf.proguard</groupId>
+                        <artifactId>proguard</artifactId>
+                        <version>4.4</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                </dependencies>
+            </plugin>
+         -->
+    </plugins>
+  </build>
+</project>
